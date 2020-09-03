@@ -12,6 +12,7 @@ use serenity::{
 };
 use crate::bot::utils::{reply};
 use crate::bot::DataBase;
+use crate::config::Config;
 
 #[group()]
 #[commands(ping, db_test, prefix)]

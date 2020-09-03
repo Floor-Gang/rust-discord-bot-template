@@ -1,2 +1,2 @@
-# Birthday bot
+# Template for rust discord bots with postgres
 

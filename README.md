@@ -18,7 +18,7 @@ If anything goes wrong for any reason you can manually make a config.yml in the 
 ```yaml
 ---
 token: ""
-prefix: !
+prefix: ;
 db_uri: "postgres://postgres:postgres@localhost/postgres"
 location: "./config.yml"
 ```

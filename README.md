@@ -27,3 +27,5 @@ Now run it again and it should work
 ```bash 
 cargo run
 ```
+
+###### Massive thanks to [dylan](https://github.com/dylhack) for the config function

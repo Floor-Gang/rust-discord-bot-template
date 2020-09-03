@@ -1,5 +1,5 @@
 [package]
-name = "birthdaybot"
+name = "discord-bot-template"
 version = "0.1.0"
 authors = ["Matthew <staalkoper@gmail.com>"]
 edition = "2018"

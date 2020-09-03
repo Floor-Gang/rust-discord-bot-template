@@ -78,19 +78,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3441f0f7b02788e948e47f457ca01f1d7e6d92c693bc132c22b087d3141c03ff"
 
 [[package]]
-name = "birthdaybot"
-version = "0.1.0"
-dependencies = [
- "serde",
- "serde_yaml",
- "serenity",
- "time",
- "tokio",
- "tokio-postgres",
- "typemap",
-]
-
-[[package]]
 name = "bitflags"
 version = "1.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -235,6 +222,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d3dd60d1080a57a05ab032377049e0591415d2b31afd7028356dbf3cc6dcb066"
 dependencies = [
  "generic-array 0.14.4",
+]
+
+[[package]]
+name = "discord-bot-template"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_yaml",
+ "serenity",
+ "time",
+ "tokio",
+ "tokio-postgres",
+ "typemap",
 ]
 
 [[package]]

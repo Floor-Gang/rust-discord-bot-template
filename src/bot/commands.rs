@@ -20,9 +20,6 @@ pub struct Commands;
 
 #[command]
 async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
-    let test = "fortnite";
-    println!("{}", test);
-
     reply(&ctx, &msg, &String::from("Pong!")).await;
     Ok(())
 }

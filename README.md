@@ -20,12 +20,15 @@ If anything goes wrong for any reason you can manually make a config.yml in the 
 token: ""
 prefix: ;
 db_uri: "postgres://postgres:postgres@localhost/postgres"
-location: "./config.yml"
 ```
 
 Now run it again and it should work
 ```bash 
 cargo run
 ```
+
+## Notes
+### Custom Config Location
+To set a custom config location, set the enviroment variable "CONFIG_PATH" and point it to a file.
 
 ###### Massive thanks to [dylan](https://github.com/dylhack) for the config function

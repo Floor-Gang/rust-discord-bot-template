@@ -4,8 +4,8 @@ mod utils;
 
 use crate::config::Config;
 use crate::database;
-
 use events::Handler;
+use log::{warn};
 use serenity::{
     framework::standard::{
         StandardFramework,
@@ -34,7 +34,7 @@ pub async fn start(config: Config) {
         .framework(framework)
         .event_handler(Handler)
         .await
-        .expect("Err creating client");
+        .expect("Failed to create a new client");
 
     let db_client = database::connect(&config.db_uri).await;
 
@@ -45,6 +45,6 @@ pub async fn start(config: Config) {
     }
 
     if let Err(e) = client.start().await {
-        panic!("Failed to start bot \n{:?}", e)
+        warn!("Failed to login, is the token correct?\n{}", e);
     }
 }

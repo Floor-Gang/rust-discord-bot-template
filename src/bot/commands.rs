@@ -1,3 +1,6 @@
+use crate::bot::utils::{reply};
+use crate::bot::DataBase;
+use crate::config::Config;
 use serenity::{
     prelude::*,
     framework::standard::{
@@ -10,9 +13,6 @@ use serenity::{
         channel::Message
     }
 };
-use crate::bot::utils::{reply};
-use crate::bot::DataBase;
-use crate::config::Config;
 
 #[group()]
 #[commands(ping, db_test, prefix)]

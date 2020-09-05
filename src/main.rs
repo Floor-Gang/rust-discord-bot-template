@@ -1,3 +1,7 @@
+mod config;
+mod bot;
+mod database;
+
 use crate::config::Config;
 use simple_logger::SimpleLogger;
 use log::{
@@ -5,12 +9,6 @@ use log::{
 	info, 
 	warn,
 };
-
-
-mod config;
-mod bot;
-mod database;
-
 
 #[tokio::main]
 async fn main() {

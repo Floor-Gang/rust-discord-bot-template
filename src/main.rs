@@ -19,7 +19,7 @@ async fn main() {
 	
 	info!("Starting...");
     
-    let config = Config::new(String::from("./config.yml"));
+    let config = Config::new();
 
     if config.token.is_empty() {
         warn!("Please fill out the config.yml");

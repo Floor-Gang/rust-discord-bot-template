@@ -1,10 +1,12 @@
+use log::{warn};
 use serenity::prelude::Context;
 use serenity::model::channel::Message;
 
 pub(crate) async fn reply(ctx: &Context, msg: &Message, content: &String) {
-    if let Err(why) = msg.channel_id.say(&ctx.http, &content).await {
-        println!("Failed to send message in #{} because\n{:?}",
-                 msg.channel_id, why
+    if let Err(why) = msg.channel_id.say(&ctx, &content).await {
+        warn!("Failed to send message in #{} because\n{:?}",
+            msg.channel_id,
+            why,
         );
     }
 }

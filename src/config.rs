@@ -2,6 +2,7 @@ use serde::{Deserialize, Serialize};
 use serde_yaml;
 use std::fs::File;
 use std::io::prelude::*;
+use log::{info};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Config {
@@ -23,10 +24,8 @@ impl Config {
                     location,
                 };
                 conf.save();
-                panic!(
-                    "Saved a new config, please fill it out \n{}",
-                    &conf.location,
-                );
+                info!("Created a new config.yml to {}", &conf.location);
+                return conf;
             }
         }
     }

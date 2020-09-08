@@ -1,5 +1,5 @@
 # Rust discord template
-This template is configured with postgres and serenity.
+aThis template is configured with postgres and serenity.
 
 ## How to start
 Clone the repo with 

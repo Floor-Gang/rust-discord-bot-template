@@ -1,9 +1,8 @@
 mod bot;
-mod config;
-mod database;
+mod services;
 
-use crate::config::Config;
 use log::{info, warn, LevelFilter};
+use services::config::Config;
 use simple_logger::SimpleLogger;
 
 #[tokio::main]

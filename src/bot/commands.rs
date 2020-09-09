@@ -1,6 +1,6 @@
 use crate::bot::utils::reply;
-use crate::bot::DataBase;
-use crate::config::Config;
+use crate::services::Config;
+use crate::services::DataBase;
 use serenity::{
     framework::standard::{
         macros::{command, group},

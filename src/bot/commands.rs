@@ -1,17 +1,13 @@
-use crate::bot::utils::{reply};
+use crate::bot::utils::reply;
 use crate::bot::DataBase;
 use crate::config::Config;
 use serenity::{
-    prelude::*,
     framework::standard::{
+        macros::{command, group},
         CommandResult,
-        macros::{
-            command, group
-        }
     },
-    model::{
-        channel::Message
-    }
+    model::channel::Message,
+    prelude::*,
 };
 
 #[group()]
@@ -29,17 +25,21 @@ async fn prefix(ctx: &Context, msg: &Message) -> CommandResult {
     let data = ctx.data.read().await;
     let config = data.get::<Config>().unwrap();
 
-    if let Err(why) = msg.channel_id.send_message(&ctx.http,  |m| {
-        m.embed(|embed| {
-            embed.title("Prefix");
-            embed.description(format!("My prefix is: `{}`", &config.prefix));
-            embed.color(0xffa500)
-        });
-        m
-
-    }).await {
-        println!("Failed to send message in #{} because\n{:?}",
-                 msg.channel_id, why
+    if let Err(why) = msg
+        .channel_id
+        .send_message(&ctx.http, |m| {
+            m.embed(|embed| {
+                embed.title("Prefix");
+                embed.description(format!("My prefix is: `{}`", &config.prefix));
+                embed.color(0xffa500)
+            });
+            m
+        })
+        .await
+    {
+        println!(
+            "Failed to send message in #{} because\n{:?}",
+            msg.channel_id, why
         );
     };
 

@@ -1,24 +1,20 @@
-mod config;
 mod bot;
+mod config;
 mod database;
 
 use crate::config::Config;
+use log::{info, warn, LevelFilter};
 use simple_logger::SimpleLogger;
-use log::{
-	LevelFilter, 
-	info, 
-	warn,
-};
 
 #[tokio::main]
 async fn main() {
-	SimpleLogger::new()
+    SimpleLogger::new()
         .with_level(LevelFilter::Info)
-		.init()
-		.unwrap();
-	
-	info!("Starting...");
-    
+        .init()
+        .unwrap();
+
+    info!("Starting...");
+
     let config = Config::new();
 
     if config.token.is_empty() {

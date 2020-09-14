@@ -1,6 +1,5 @@
 use crate::bot::utils::reply;
 use crate::services::Config;
-use crate::services::DataBase;
 use serenity::{
     framework::standard::{
         macros::{command, group},
@@ -9,6 +8,7 @@ use serenity::{
     model::channel::Message,
     prelude::*,
 };
+use crate::services::ConnectionPool;
 
 #[group()]
 #[commands(ping, db_test, prefix)]
@@ -49,10 +49,13 @@ async fn prefix(ctx: &Context, msg: &Message) -> CommandResult {
 #[command]
 async fn db_test(ctx: &Context, msg: &Message) -> CommandResult {
     let data = ctx.data.read().await;
-    let db = data.get::<DataBase>().unwrap();
+    let pool = data.get::<ConnectionPool>().unwrap();
 
-    let rows = db.query("SELECT test FROM test", &[]).await.unwrap();
+    let rows = sqlx::query!("SELECT test FROM test")
+        .fetch(pool)
+        .await
+        .unwrap();
 
-    reply(&ctx, &msg, &rows[0].get(0)).await;
+    reply(&ctx, &msg, &format!("{}", rows[0].test)).await; // This won't compile as the table is not existent
     Ok(())
 }

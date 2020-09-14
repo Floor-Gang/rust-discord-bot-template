@@ -7,13 +7,31 @@ Clone the repo with
 git clone https://github.com/DankDumpster/rust-discord-bot-template
 ```
 
-Build and run it for the first time
+Now we need to setup sqlx and we do that by doing
 ```bash
-cargo run
+cargo install --version=0.1.0-beta.1 sqlx-cli --no-default-features --features postgres
 ```
 
-This will ask you to enter each of the configuration values. If you wish edit the physical config.yml file then type "n" when it asks you if you wish to enter the config details and the bot will close and generate a predefined config.yml file for you to configure.
+Before we run sqlx we need to set the database environment variable temporarily, this is different for most shells
 
+#### cmd
+```
+setx DATABASE_URL = "postgres://postgres:postgres@localhost/postgres"
+```
+#### fish
+```
+set -g -x  DATABASE_URL "postgres://postgres:postgres@localhost/postgres"
+```
+etc...
+
+Now once that's done we're going to run, this will take some time as its compiling everything
+```
+cargo sqlx prepare
+```
+
+NOTE: this will panic
+
+This will ask you to enter each of the configuration values. If you wish edit the physical config.yml file then type "n" when it asks you if you wish to enter the config details and the bot will close and generate a predefined config.yml file for you to configure.
 If anything goes wrong for any reason you can manually make a config.yml in the root with this:
 ```yaml
 ---

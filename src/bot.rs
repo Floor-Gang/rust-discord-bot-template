@@ -27,12 +27,12 @@ pub async fn start(config: Config) {
         .await
         .expect("Failed to create a new client");
 
-    let db_client = database::connect(&config.db_uri).await;
+    let pool = database::connect(&config.db_uri).await.unwrap();
 
     {
         let mut data = client.data.write().await;
         data.insert::<Config>(config);
-        data.insert::<database::DataBase>(db_client);
+        data.insert::<database::ConnectionPool>(pool);
     }
 
     if let Err(e) = client.start().await {

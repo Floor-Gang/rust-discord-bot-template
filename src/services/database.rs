@@ -1,21 +1,20 @@
+use sqlx::postgres::PgPoolOptions;
+use sqlx::{PgPool, Pool, Postgres};
 use serenity::prelude::TypeMapKey;
 
-use tokio_postgres::{Client as DBClient, NoTls};
+pub struct ConnectionPool;
 
-pub struct DataBase(DBClient);
-
-impl TypeMapKey for DataBase {
-    type Value = DBClient;
+impl TypeMapKey for ConnectionPool {
+    type Value = PgPool;
 }
 
-pub(crate) async fn connect(uri: &String) -> DBClient {
-    let (db_client, connection) = tokio_postgres::connect(&uri, NoTls).await.unwrap();
+pub(crate) async fn connect(
+    uri: &String,
+) -> Result<Pool<Postgres>, Box<dyn std::error::Error + Send + Sync>> {
+    let pool = PgPoolOptions::new()
+        .max_connections(20)
+        .connect(uri)
+        .await?;
 
-    tokio::spawn(async move {
-        if let Err(e) = connection.await {
-            eprintln!("connection error: {}", e);
-        }
-    });
-
-    db_client
+    Ok(pool)
 }

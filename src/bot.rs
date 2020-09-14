@@ -1,20 +1,11 @@
-mod events;
-mod commands;
-mod utils;
-
-use crate::config::Config;
-use crate::database;
+use crate::services::{config::Config, database};
 use events::Handler;
-use log::{warn};
-use serenity::{
-    framework::standard::{
-        StandardFramework,
-    },
-    prelude::TypeMapKey,
-    Client
-};
+use log::warn;
+use serenity::{framework::standard::StandardFramework, prelude::TypeMapKey, Client};
 
-use crate::database::DataBase;
+mod commands;
+mod events;
+mod utils;
 
 impl TypeMapKey for Config {
     type Value = Config;
@@ -41,7 +32,7 @@ pub async fn start(config: Config) {
     {
         let mut data = client.data.write().await;
         data.insert::<Config>(config);
-        data.insert::<DataBase>(db_client);
+        data.insert::<database::DataBase>(db_client);
     }
 
     if let Err(e) = client.start().await {

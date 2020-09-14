@@ -3,29 +3,29 @@ This template is configured with postgres and serenity.
 
 ## How to start
 Clone the repo with 
-```bash
+```shell script
 git clone https://github.com/DankDumpster/rust-discord-bot-template
 ```
 
 Now we need to setup sqlx and we do that by doing
-```bash
+```shell script
 cargo install --version=0.1.0-beta.1 sqlx-cli --no-default-features --features postgres
 ```
 
 Before we run sqlx we need to set the database environment variable temporarily, this is different for most shells
 
 #### cmd
-```
+```shell script
 setx DATABASE_URL = "postgres://postgres:postgres@localhost/postgres"
 ```
 #### fish
-```
+```shell script
 set -g -x  DATABASE_URL "postgres://postgres:postgres@localhost/postgres"
 ```
 etc...
 
 Now once that's done we're going to run, this will take some time as its compiling everything
-```
+```shell script
 cargo sqlx prepare
 ```
 
@@ -41,7 +41,7 @@ db_uri: "postgres://postgres:postgres@localhost/postgres"
 ```
 
 Now run it again and it should work
-```bash 
+```shell script 
 cargo run
 ```
 

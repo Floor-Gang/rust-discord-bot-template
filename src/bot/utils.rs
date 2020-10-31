@@ -2,7 +2,7 @@ use log::warn;
 use serenity::model::channel::Message;
 use serenity::prelude::Context;
 
-pub(crate) async fn reply(ctx: &Context, msg: &Message, content: &String) {
+pub(crate) async fn reply<T: std::fmt::Display>(ctx: &Context, msg: &Message, content: T) {
     if let Err(why) = msg.channel_id.say(&ctx, &content).await {
         warn!(
             "Failed to send message in #{} because\n{:?}",
